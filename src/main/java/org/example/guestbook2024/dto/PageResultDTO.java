@@ -43,7 +43,7 @@ public class PageResultDTO<DTO, EN> {
         this.page = pageable.getPageNumber() + 1;
         this.size = pageable.getPageSize();
         //현재 화면에 보여질 임시 마지막 페이지 번호
-        int temEnd = (int)(Math.ceil(page/10.0));
+        int temEnd = (int)(Math.ceil(page/10.0))*10;
         start = temEnd - 9;
 //          삼항조건 연산자에서 조건식이 true면 마지막 화면이 아닌경우 false 면 마지막 화면이라는
 //             마지막 화면이 아닌경우 1~3번재 화면 , 마지막 화면은 4번째 화면을 의미(31)
