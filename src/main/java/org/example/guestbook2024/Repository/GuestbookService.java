@@ -11,6 +11,7 @@ public interface GuestbookService {
     // 한 페이지에 보여질 글 목록(GuestbookDTO 객체)이 저장된 List를 가지고 있는  PageResultDTO객체 참조값을 반환하는 기능
     PageResultDTO<GuestbookDTO , GuestBook> getList(PageRequestDTO requestDTO);
 
+    GuestbookDTO read(Long gno);
     default GuestBook dtoToEntity(GuestbookDTO dto) {
         GuestBook entity = GuestBook.builder()
                 .gno(dto.getGno())
