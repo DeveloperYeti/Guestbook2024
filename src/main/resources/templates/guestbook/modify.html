@@ -8,6 +8,7 @@
         <h1 class="mt-4">modify</h1>
         <form action="/guestbook/modify" method="post">
         <form th:action="@{/guestbook/register}" th:method="post">
+            <input type = "hidden" name = "page" th:value = "${requestDTO.page}">
             <div class="form-group">
                 <label>Gno:</label>
                 <input type="text" name="gno" placeholder="Enter title" class="form-control" th:value="${dto.gno}">
@@ -30,15 +31,15 @@
             </div>
             <div class = "form-group">
                 <label>RegDate</label>
-                <input type="text" name="regDate" placeholder="Enter title" class="form-control" th:value="${dto.#temporals.format(dto.regDate,'yyyy/MM/dd HH:mm:ss')}" readonly>
+                <input type="text" name="regDate" placeholder="Enter title" class="form-control" th:value="${dto.regDate}" readonly>
             </div>
 
             <div class = "form-group">
                 <label>ModifyDate</label>
-                <input type="text" name="modDate" placeholder="Enter title" class="form-control" th:value="${dto.#temporals.format(dto.modDate,'yyyy/MM/dd HH:mm:ss')}" readonly>
+                <input type="text" name="modDate" placeholder="Enter title" class="form-control" th:value="${dto.modDate}" readonly>
             </div>
         </form>
-                <button type="button" class="btn btn-primary form-group">Modify</button>
+                <button type="button" class="btn btn-primary modifyBtn">Modify</button>
             <a th:href="@{/guestbook/list(page=${requestDTO.page})}">
                 <button type="button" class="btn btn-info form-group">List</button>
             </a>
@@ -51,7 +52,14 @@
         $(".removeBtn").click(function (){
             actionForm.attr("action", "/guestbook/remove")
                 .attr("method" , "post")
-            actionForm.submit()
-        })
+                .submit()
+        });
+
+        $(".modifyBtn").click(function (){
+            actionForm.attr("action", "/guestbook/modify")
+                .attr("method" , "post")
+                .submit()
+        });
+
     </script>
 </html>
