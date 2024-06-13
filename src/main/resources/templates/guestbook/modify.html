@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<th:block th:replace = "~{/layout/basic:: setContent(~{this::content})}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">modify</h1>
+        <form action="/guestbook/modify" method="post">
+        <form th:action="@{/guestbook/register}" th:method="post">
+            <div class="form-group">
+                <label>Gno:</label>
+                <input type="text" name="gno" placeholder="Enter title" class="form-control" th:value="${dto.gno}">
+            </div>
+
+            <div class="form-group">
+                <label>Title:</label>
+                <input type="text" name="title" placeholder="Enter title" class="form-control" th:value="${dto.title}">
+            </div>
+
+            <div class="form-group">
+                <label>Content:</label>
+                <textarea name="content" rows="5" class="form-control"  >[[${dto.content}]]</textarea>
+
+            </div>
+
+            <div class = "form-group">
+                <label>Writer</label>
+                <input type="text" name="writer" placeholder="Enter title" class="form-control" th:value="${dto.writer}" readonly>
+            </div>
+            <div class = "form-group">
+                <label>RegDate</label>
+                <input type="text" name="regDate" placeholder="Enter title" class="form-control" th:value="${dto.#temporals.format(dto.regDate,'yyyy/MM/dd HH:mm:ss')}" readonly>
+            </div>
+
+            <div class = "form-group">
+                <label>ModifyDate</label>
+                <input type="text" name="modDate" placeholder="Enter title" class="form-control" th:value="${dto.#temporals.format(dto.modDate,'yyyy/MM/dd HH:mm:ss')}" readonly>
+            </div>
+        </form>
+                <button type="button" class="btn btn-primary form-group">Modify</button>
+            <a th:href="@{/guestbook/list(page=${requestDTO.page})}">
+                <button type="button" class="btn btn-info form-group">List</button>
+            </a>
+                <button type="button" class="btn btn-danger removeBtn">Remove</button>
+        </form>
+    </th:block>
+</th:block>
+    <script th:inline="javascript">
+        let actionForm = $("form");
+        $(".removeBtn").click(function (){
+            actionForm.attr("action", "/guestbook/remove")
+                .attr("method" , "post")
+            actionForm.submit()
+        })
+    </script>
+</html>

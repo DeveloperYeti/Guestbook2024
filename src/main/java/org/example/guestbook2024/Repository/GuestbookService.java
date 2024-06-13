@@ -21,6 +21,12 @@ public interface GuestbookService {
                 .build();
         return entity;
     }
+    //글 제목과 내용 수정하는 기능
+
+    // 글 삭제 기능
+    void modify(GuestbookDTO dto );
+    void remove(Long gno);
+
     default GuestbookDTO entityToDto(GuestBook entity){
         GuestbookDTO dto =GuestbookDTO.builder()
                 .gno(entity.getGno())
