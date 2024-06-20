@@ -9,6 +9,8 @@
         <form action="/guestbook/modify" method="post">
         <form th:action="@{/guestbook/register}" th:method="post">
             <input type = "hidden" name = "page" th:value = "${requestDTO.page}">
+            <input type = "hidden" name = "type" th:value = "${requestDTO.type}">
+            <input type = "hidden" name = "keyword" th:value = "${requestDTO.keyword}">
             <div class="form-group">
                 <label>Gno:</label>
                 <input type="text" name="gno" placeholder="Enter title" class="form-control" th:value="${dto.gno}">
@@ -40,8 +42,8 @@
             </div>
         </form>
                 <button type="button" class="btn btn-primary modifyBtn">Modify</button>
-            <a th:href="@{/guestbook/list(page=${requestDTO.page})}">
-                <button type="button" class="btn btn-info form-group">List</button>
+
+                <button type="button" class="btn btn-info form-group listBtn">List</button>
             </a>
                 <button type="button" class="btn btn-danger removeBtn">Remove</button>
         </form>
@@ -52,6 +54,22 @@
         $(".removeBtn").click(function (){
             actionForm.attr("action", "/guestbook/remove")
                 .attr("method" , "post")
+                .submit()
+        });
+
+        $(".listBtn").click(function (){
+            var page = $("input[name = 'page']");
+            var type = $("input[name = 'type']");
+            var keyword = $("input[name = 'keyword']");
+
+            actionForm.empty();
+            actionForm.append(page);
+            actionForm.append(type);
+            actionForm.append(keyword);
+
+
+            actionForm.attr("action", "/guestbook/list")
+                .attr("method" , "get")
                 .submit()
         });
 

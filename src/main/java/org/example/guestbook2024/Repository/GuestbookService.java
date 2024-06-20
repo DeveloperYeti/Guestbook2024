@@ -1,5 +1,6 @@
 package org.example.guestbook2024.Repository;
 
+import com.querydsl.core.BooleanBuilder;
 import org.example.guestbook2024.dto.GuestbookDTO;
 import org.example.guestbook2024.dto.PageRequestDTO;
 import org.example.guestbook2024.dto.PageResultDTO;
@@ -39,4 +40,7 @@ public interface GuestbookService {
 
         return dto;
     }
+    // 검색 기능
+    BooleanBuilder getSearch(PageRequestDTO requestDTO);
+
 }

@@ -26,10 +26,12 @@ public class GuestServiceTests {
         service.register(guestbookDTO);
     }
     @Test
-    public void testList(){
+    public void testSearchList(){
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
                 .page(25)
                 .size(10)
+                .type("tc")
+                .keyword("7")
                 .build();
         service.getList(pageRequestDTO);
         PageResultDTO<GuestbookDTO , GuestBook> resultDTO = service.getList(pageRequestDTO);
